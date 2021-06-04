@@ -19,3 +19,4 @@ if __name__ == '__main__':
     for filho in juan.filhos:
         print(filho.nome)
 
+
