@@ -9,6 +9,16 @@ class Pessoa:
         return f'Olá {id(self)}'
 
 
+    @staticmethod
+    def metodo_statico():
+        return 42
+
+    @classmethod
+    def nome_e_atributos_de_classe(cls):
+        return f' {cls} -  olhos {cls.olhos}'
+
+
+
 if __name__ == '__main__':
     cleyson = Pessoa(nome='Cleyson')
     juan = Pessoa(cleyson, nome= 'Juan')
@@ -30,5 +40,6 @@ if __name__ == '__main__':
         print(juan.olhos)
         print(cleyson.olhos)
         print(id(Pessoa.olhos), id(juan.olhos), id(cleyson.olhos))
-
+        print(Pessoa.metodo_statico(), juan.metodo_statico())
+        print(Pessoa.nome_e_atributos_de_classe(), juan.nome_e_atributos_de_classe())
 
