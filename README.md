@@ -5,7 +5,7 @@ Python Birds
 
 Essa versão é a mais simples. Ela não contém replay nem reset, de forma que o jogo não pode retroceder.
 
-Para versão mais complexa, acesse a branch [diversao](https://github.com/pythonprobr/pythonbirds/tree/diversao)
+Para versão mais complexa, acesse a branch [diversa o](https://github.com/pythonprobr/pythonbirds/tree/diversao)
 
 Projeto para Ensino de Programação Orientadas a Objetos em Python.
 
