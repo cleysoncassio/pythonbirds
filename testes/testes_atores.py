@@ -150,7 +150,7 @@ class ObstaculoTestes(TestCase):
         self.assertEqual('O', obstaculo.caracter())
         outro_ator_na_mesma_posicao = Ator()
         obstaculo.colidir(outro_ator_na_mesma_posicao)
-        self.assertEqual('O', obstaculo.caracter())
+        self.assertEqual(' ', obstaculo.caracter())
 
 
 class PorcoTestes(TestCase):
@@ -162,7 +162,7 @@ class PorcoTestes(TestCase):
         self.assertEqual('@', porco.caracter())
         outro_ator_na_mesma_posicao = Ator()
         porco.colidir(outro_ator_na_mesma_posicao)
-        self.assertEqual(' ', porco.caracter())
+        self.assertEqual('+', porco.caracter())
 
 
 class PassaroBaseTests(TestCase):
@@ -184,8 +184,8 @@ class PassaroBaseTests(TestCase):
         :param tempo: tempo do jogo
         """
         x_calculado, y_calculado = passaro.calcular_posicao(tempo)
-        self.assertEqual(x_esperado, round(x_calculado), 'valor real de x = 1' % x_calculado)
-        self.assertEqual(y_esperado, round(y_calculado), 'valor real de y = 1' % y_calculado)
+        self.assertEqual(x_esperado, round(x_calculado), 'valor real de x = %s ' % x_calculado)
+        self.assertEqual(y_esperado, round(y_calculado), 'valor real de y = %s ' % y_calculado)
         self.assertEqual(status_esperado, passaro.status, '(x = %s, y = %s)' % (x_calculado, y_calculado))
 
 
@@ -199,11 +199,11 @@ class PassaroVermelhoTests(PassaroBaseTests):
         self.assertEqual('V', passaro_vermelho.caracter())
         outro_ator_na_mesma_posicao = Ator()
         passaro_vermelho.colidir(outro_ator_na_mesma_posicao)
-        self.assertEqual(' ', passaro_vermelho.caracter())
+        self.assertEqual('v', passaro_vermelho.caracter())
 
 
     def teste_velocidade_escalar(self):
-        self.assertEqual(10, PassaroVermelho.velocidade_escalar)
+        self.assertEqual(20, PassaroVermelho.velocidade_escalar)
 
 
     def teste_foi_lancado(self):
@@ -212,9 +212,8 @@ class PassaroVermelhoTests(PassaroBaseTests):
         Falso
         :return:
         """
-        return
         passaro_vermelho = PassaroVermelho(1, 1)
-        self.assertTrue(passaro_vermelho.foi_lancado(),
+        self.assertFalse(passaro_vermelho.foi_lancado(),
                          'Se o método lançar ainda não foi executado, deve retornar falso')
         passaro_vermelho.lancar(0, 0)
         self.assertTrue(passaro_vermelho.foi_lancado(),
@@ -253,10 +252,10 @@ class PassaroAmareloTests(PassaroBaseTests):
         self.assertEqual('A', passaro_amarelo.caracter())
         outro_ator_na_mesma_posicao = Ator()
         passaro_amarelo.colidir(outro_ator_na_mesma_posicao)
-        self.assertEqual(' ', passaro_amarelo.caracter())
+        self.assertEqual('a', passaro_amarelo.caracter())
 
     def teste_velocidade_escalar(self):
-        self.assertEqual(10, PassaroAmarelo.velocidade_escalar)
+        self.assertEqual(30, PassaroAmarelo.velocidade_escalar)
 
     def teste_lancamento_vertical(self):
         """
@@ -311,15 +310,15 @@ class PassaroAmareloTests(PassaroBaseTests):
         # colisão
         self.assert_posicao_vertical(0, 8.04, passaro_amarelo)
         passaro_amarelo.colidir_com_chao()
-        self.assertEqual(ATIVO, passaro_amarelo.status)
+        self.assertEqual(DESTRUIDO, passaro_amarelo.status)
 
     def teste_lancamento_45_graus(self):
         passaro_amarelo = PassaroAmarelo(1, 1)
         passaro_amarelo.lancar(45, 2)  # passaro lancado a 45 graus no tempo 2 segundos
-        self.assert_passaro_posicao(0, 1, ATIVO, passaro_amarelo, 2.0)
+        self.assert_passaro_posicao(1, 1, ATIVO, passaro_amarelo, 2.0)
         self.assert_passaro_posicao(1, 1, ATIVO, passaro_amarelo, 2.01)
         self.assert_passaro_posicao(1, 1, ATIVO, passaro_amarelo, 2.02)
-        self.assert_passaro_posicao(1, 2, ATIVO, passaro_amarelo, 2.03)
+        self.assert_passaro_posicao(2, 2, ATIVO, passaro_amarelo, 2.03)
         self.assert_passaro_posicao(2, 2, ATIVO, passaro_amarelo, 2.04)
         self.assert_passaro_posicao(2, 2, ATIVO, passaro_amarelo, 2.05)
         self.assert_passaro_posicao(2, 2, ATIVO, passaro_amarelo, 2.06)
